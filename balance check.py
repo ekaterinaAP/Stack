@@ -8,16 +8,15 @@ def balance_check(text):
     result = 'сбалансировано'
     for letter in text:
         if letter in brackets_open:
-            Stack.push(text_to_check, brackets_open.index(letter))
+            text_to_check.push(brackets_open.index(letter))
+            # Stack.push(text_to_check, brackets_open.index(letter))
         elif letter in brackets_close:
-            if not Stack.is_empty(text_to_check) and Stack.peek(text_to_check) == brackets_close.index(letter):
-                Stack.pop(text_to_check)
+            if not text_to_check.is_empty() and text_to_check.peek() == brackets_close.index(letter):
+                text_to_check.pop()
             else:
                 result = 'не сбалансировано'
-    # if Stack.size(text_to_check) == 0:
-    if Stack.is_empty(text_to_check):
-        pass
-    else:
+
+    if not text_to_check.is_empty():
         result = 'не сбалансировано'
 
     return result
